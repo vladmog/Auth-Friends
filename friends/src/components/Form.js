@@ -31,6 +31,7 @@ class Form extends Component {
         this.props.login(creds)
             .then(res => {
                 console.log("formRes: ", res)
+                this.props.getFriends()
                 this.props.history.push("/friendslist")
             })
             .catch(err => {
@@ -40,7 +41,7 @@ class Form extends Component {
         //     name: "Marcus",
         //     height: "5'8"
         // }
-        this.props.getFriends()
+        
 
     }
     render(){
@@ -52,11 +53,13 @@ class Form extends Component {
                         name = "username"
                         value = {this.state.username}
                         onChange = {this.changeHandler}
+                        placeholder = "username"
                     />
                     <input 
                         name = "password"
                         value = {this.state.password}
                         onChange = {this.changeHandler}
+                        placeholder = "password"
                     />
                     <button
                         onClick = {this.submitHandler}
