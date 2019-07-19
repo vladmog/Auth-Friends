@@ -22,7 +22,7 @@ export const login = creds => dispatch => {
             type: LOGIN_SUCCESS, 
             payload: res.data
         })
-        return true
+        return true;
     })
     .catch(err => {
         console.log("err: ", err)
@@ -30,7 +30,7 @@ export const login = creds => dispatch => {
             type: LOGIN_FAILURE,
             payload: err.response
         })
-        return false
+        return false;
     })
 }
 
@@ -51,13 +51,16 @@ export const getFriends = () => (dispatch) => {
 export const addFriend = (values) => (dispatch) => {
     console.log("Post start")
     dispatch ({type: POST_START})
-    axiosWithAuth().post('/friends', values)
+    return axiosWithAuth().post('/friends', values)
         .then(res => {
-            console.log(res)
-            dispatch({type: POST_SUCCESS})
+            console.log("res", res)
+            dispatch({type: POST_SUCCESS, payload: res.data})
+            return true
         })
         .catch(err => {
-            console.log(err)
+            console.log("err", err)
             dispatch({type: POST_ERR})
+            return false
         })
+        
 }

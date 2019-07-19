@@ -1,4 +1,6 @@
-import {LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE, GET_START, GET_SUCCESS} from '../actions/actions';
+import {LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE, GET_START, GET_SUCCESS, POST_START, POST_SUCCESS, POST_ERR} from '../actions/actions';
+
+
 
 
 let defaultState = {
@@ -46,6 +48,7 @@ export default function reducer (state = defaultState, action){
             }
         case GET_SUCCESS:
             return {
+                ...state,
                 deletingFriend: false,
                 fetchingFriends: false,
                 friends: action.payload,
@@ -53,6 +56,35 @@ export default function reducer (state = defaultState, action){
                 savingFriends: false,
                 updatingFriend: false,
                 error: null
+            }
+
+           
+        case POST_START:
+            return{
+                ...state,
+                // deletingFriend: false,
+                // fetchingFriends: true,
+                // friends: action.payload,
+                // loggingIn: false,
+                // savingFriends: false,
+                // updatingFriend: false,
+                // error: null
+            }
+        case POST_SUCCESS:
+            return {
+                ...state,
+                // deletingFriend: false,
+                // fetchingFriends: false,
+                friends: action.payload,
+                // loggingIn: false,
+                // savingFriends: false,
+                // updatingFriend: false,
+                // error: null
+            }
+        case POST_ERR:
+            return {
+                ...state,
+
             }
         default: return state
     }

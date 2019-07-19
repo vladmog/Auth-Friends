@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import {connect} from 'react-redux';
 import {addFriend} from '../actions/actions'
 
-function AddForm({touched, errors}) {
+function AddForm({touched, errors}, props) {
     return(
         <div>
             <Form>
@@ -54,7 +54,7 @@ const FormikAddForm = withFormik({
             .required(),
     }),
 
-    handleSubmit(values, formikBag, props) {
+    handleSubmit(values, formikBag) {
         formikBag.resetForm();
         formikBag.setSubmitting(true);
         // axiosWithAuth().post('/friends', values)
@@ -68,8 +68,8 @@ const FormikAddForm = withFormik({
         //         window.alert(`Error`);
         //         formikBag.setSubmitting(false); 
         //     })
-        console.log("propscheck:", props)
-        this.props.addFriend(values)
+        console.log("propscheck:", formikBag.props.addFriend)
+        formikBag.props.addFriend(values)
             .then(res => {
                 console.log(res)
                 window.alert(`Welcome`);
